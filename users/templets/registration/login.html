@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %} Login {% endblock %}
+{% block main %}
+
+<div class="continer">
+    {% load crispy_forms_tags %} 
+    <div class="row g-3 align-items-center">
+        <div class="col-sm-7">
+            <div class="class mt-5" style = "position:relative; left:20px; top:25px; margin:auto" >
+                <h1>Login</h1>
+                <div class="form-group">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <br/>
+                        <button class="btn btn-secondary">login</button>
+                   
+                </div>       
+        </div>
+        </div>
+           
+    </div>
+        
+    <a class="btn btn-primary mt-5" style="margin-left:20px"  href="{% url 'register' %}">
+        Register
+      </a> 
+    
+
+
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} POST EDIT {% endblock %}
+{% block main %}
+
+<div class="text my-5">
+
+
+
+
+  <div class="continer">
+    <br /><br />
+
+
+    <div class="row">
+
+      <div class="col">
+
+        <div class="class" align="right"><small>By: {{ artical.author }} </small><i
+            class="far fa-eye"></i>{{artical.views}}<h1>{{ artical.title }}</h1>
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <img src={{artical.img.url}} class="img-thumbnail" 1>
+      </div>
+
+      <div class="col div-p">
+        <div class="d">
+          <p>{{ artical.text }}</p>
+        </div>
+        
+        
+      </div>
+
+
+    </div>
+    <a class="btn btn-primary mt-5" href="{% url 'home' %}">
+      back
+    </a>
+    {% endblock %}
