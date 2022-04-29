@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %} Consutls{% endblock %}
+{% block main %}
+<div class="card">
+<br/><br/><br/>
+    <h1>Consutls</h1>
+
+    {% for item in consutls %}
+                 <h4> <a class="dropdown-item" href="{% url 'consult' id=item.id %}">
+                  {{ item.title }} </a></h4>
+     {% endfor %}
+    </div>
+    {% endblock %}

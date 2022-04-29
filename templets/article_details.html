@@ -1,16 +1,161 @@
 {% extends 'base.html' %}
 {% block title %} POST EDIT {% endblock %}
 {% block main %}
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial;
+    padding: 10px;
+    background: #f1f1f1;
+  }
+  
+  
+  .header h1 {
+    font-size: 50px;
+  }
+  
+  /* Style the top navigation bar */
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  /* Style the topnav links */
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change color on hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Create two unequal columns that floats next to each other */
+  /* Left column */
+  .leftcolumn {   
+    float: left;
+    width: 75%;
+  }
+  
+  /* Right column */
+  .rightcolumn {
+    float: left;
+    width: 25%;
+    background-color: #f1f1f1;
+    padding-left: 20px;
+  }
+  
+  /* Fake image */
+  .fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Add a card effect for articles */
+  .card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Footer */
+  .footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+  }
+  
+  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {   
+      width: 100%;
+      padding: 0;
+    }
+  }
+  
+  /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+  @media screen and (max-width: 400px) {
+    .topnav a {
+      float: none;
+      width: 100%;
+    }
+  }
+  .art-head{
+    display: flex;
+    justify-content: space-between;
+  }
+  </style>
+  
+  
+  
+  <!-- <div class="topnav">
+    <a href="#">Link</a>
+    <a href="#">Link</a>
+    <a href="#">Link</a>
+    <a href="#" style="float:right">Link</a>
+  </div> -->
 
-<div class="text my-5">
+      <div class="card">
+        <div class="art-head">
+          <h2>{{ artical.title }}</h2>       
+        <div class="class" ><small>By: {{ artical.author }} </small><i
+          class="far fa-eye"></i>{{artical.views}}
+          {% if user.is_authenticated %}
+          <form action="{% url 'like_post' artical.pk %}" 
+          method="POST">
+          {% csrf_token %}
+          <button type="sumbit", name="post_id", value="{{ artical.id }}", class="btn btn-primary btn-sm">LIKE</button> - {{ total_Likes }} Likes
+          </form>
+          {% endif %}
+      </div>
+        </div>
+      <div class="row">
+        <div class="col">
+          <img src={{artical.img.url}} class="img-thumbnail" width="500" 
+        height=auto >
+        </div>
+        <div class="col">
+          <br/>
+          <p class="d" style="text-align: justify;">{{ artical.text|safe }}</p>
+        </div>
+      
+        
+        <a class="btn btn-primary mt-5" href="{% url 'home' %}">
+          back
+        </a>
+      </div>
+
+    </div>
+   
+  <!-- <div class="footer">
+    <a class="btn btn-primary mt-5" href="{% url 'home' %}">
+      back
+    </a>
+  </div> -->
 
 
 
-
+<!-- <div class="text my-5">
   <div class="continer">
     <br /><br />
-
-
     <div class="row">
 
       <div class="col">
@@ -21,17 +166,24 @@
         </div>
       </div>
     </div>
+    {% if user.is_authenticated %}
+    <form action="{% url 'like_post' artical.pk %}" 
+    method="POST">
+    {% csrf_token %}
+    <button type="sumbit", name="post_id", value="{{ artical.id }}", class="btn btn-primary btn-sm">LIKE</button> - {{ total_Likes }} Likes
+    </form>
+    {% endif %}
     <div class="row">
       <div class="col">
         <img src={{artical.img.url}} class="img-thumbnail" 1>
       </div>
 
       <div class="col div-p">
-        <div class="d">
-          <p>{{ artical.text }}</p>
+        <div class="div.d">
+          <p class="d">{{ artical.text|safe }}</p>
         </div>
-        
-        
+
+
       </div>
 
 
@@ -39,4 +191,8 @@
     <a class="btn btn-primary mt-5" href="{% url 'home' %}">
       back
     </a>
+    <br/><br/>
+    <hr>
+    <br/> -->
+    
     {% endblock %}

@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-^*s!_jii4zqyp!ahzrnkrbp^ifi^+^usgv$8%t-gh*q6+!4g1j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'Mohamedab66.pythonanywhere.com'
+]
 
 
 # Application definition
@@ -33,6 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django_filters',
     'articals.apps.ArticalsConfig',
+    'consults.apps.ConsultsConfig',
     'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',

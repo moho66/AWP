@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+<div class="card">
+    <div class="card-body">
+        <ul class="conss" style="list-style: none;">
+            <li class="cons" >
+                <div class="row">
+                    <div class="col-12">
+                        <h3>
+                            {{con.title}}
+                        </h3>
+                        <p>by {{con.name}} enail: {{con.user.email}} phone: {{con.phone}}</p>
+                    </div>
+                    <div class="col-12">
+                        
+                        <!-- <img src="{% if con.img %}{{con.img.url}}{% else %}{% static 'img/logo.png' %}{% endif %}" alt="{{con.title}}" > -->
+                        {% if con.img %}
+                        <a href="{{con.img.url}}" target="_blank" download style="text-decoration: none;">download the image</a>
+                        {% endif %}
+                    </div>
+                    <div class="col-12"><h3>text</h3> {{con.text}}</div>
+                    <div class="col-12"><h3>medical history</h3> {{con.history}}</div>
+                    <div class="col-12">
+                        <h4>Reaply: </h4>
+                        {% if request.user.is_superuser %}
+                        <form method="POST" action="{% url 'set-reply-consults' con.id %}">
+                            {% csrf_token %}
+                            
+                            <textarea style="min-height: 300px;" class="form-control" name="text" placeholder="what ....?" rows="3">{{con.reply}}</textarea>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                        </form>
+                        {% else %}
+
+                        {{con.reply}}
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+           </ul>
+    </div>
+</div>
+{% endblock %}

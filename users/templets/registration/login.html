@@ -1,12 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% block title %} Login {% endblock %}
 {% block main %}
 
-<div class="continer">
+<div class="continer form-p">
     {% load crispy_forms_tags %} 
-    <div class="row g-3 align-items-center">
-        <div class="col-sm-7">
-            <div class="class mt-5" style = "position:relative; left:20px; top:25px; margin:auto" >
+    <div class="">
+        <div class="">
+            <div class="class mt-5" >
                 <h1>Login</h1>
                 <div class="form-group">
                     <form method="POST" enctype="multipart/form-data">
@@ -21,11 +21,11 @@
            
     </div>
         
-    <a class="btn btn-primary mt-5" style="margin-left:20px"  href="{% url 'register' %}">
+    <a class="btn btn-primary mt-5"  href="{% url 'register' %}">
         Register
       </a> 
     
 
-
+</div>
 
 {% endblock %}

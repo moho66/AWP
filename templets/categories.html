@@ -1,0 +1,67 @@
+{% extends 'base2.html' %}
+{% block title %} Category {% endblock %}
+{% block main %}
+<div class="card">
+{% if category_posts %}
+<br/><br/><br/>
+<h1>{{cats}}</h1>
+        <div class="row">
+        {% for art in category_posts %}
+        
+        <div class="col-4">
+        <section class="wrapper">
+            <div class="container" >
+        
+              
+                <div class="arc-con">
+                  <a href="{% url 'articale-detail' art.pk %}">
+                    <div class="card text-white card-has-bg click-col" style="background-image:url('{{art.img.url}}');">
+                      <img class="card-img d-none" src="{{art.img.url}}"
+                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
+                      <div class="card-img-overlay d-flex flex-column">
+                        <div class="card-body">
+                          <small class="card-meta mb-2">{{ art.category }}</small>
+                          <h4 class="card-title mt-0 "><span class="arc-title">{{art.title }}</span></h4>
+                          <small><i class="far fa-clock"></i> {{art.Date}}</small>
+                          <small><i class="far fa-eye"></i> {{art.views}}</small>
+                        </div>
+                        <div class="card-footer">
+                          <div class="media">
+                            <img class="mr-3 rounded-circle"
+                              src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/male-512.png"
+                              alt="Generic placeholder image" style="max-width:50px">
+                              <!-- <i class="fa-solid fa-pen-to-square"></i> -->
+                            <div class="media-body">
+                              <h6 class="my-0 text-white d-block">{{art.author}}</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                  {% if user.is_authenticated and art.author == user %}
+                  <a class="edit-link" href="{% url 'edit_Artical' art.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                  
+                  {% elif user.is_authenticated and user.is_superuser %}
+                  <a class="edit-link" href="{% url 'edit_Artical' art.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                  {% endif %}
+                </div>
+             
+                
+        
+        
+        
+             
+            </div>
+          </section>
+        </div>
+       {% endfor %}
+        </div>
+    
+</div>
+{% else %}
+<br/><br/><br/>
+<h1>This page does not exist</h1>
+{% endif %}
+</div>
+{% endblock %}

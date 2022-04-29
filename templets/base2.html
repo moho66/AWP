@@ -1,0 +1,269 @@
+{% load static %}
+{% load posts %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    /* div {
+          border: 1px solid black;
+          background-color: lightblue;
+          padding-top: 50px;
+          padding-right: 30px;
+          padding-bottom: 50px;
+          padding-left: 80px;
+        } */
+    body {
+      background-color: #777166;
+    }
+
+    .wrapper {
+      margin: 0vh
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        min-height: 350px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .card {
+        min-height: 300px;
+      }
+    }
+
+    .card.card-has-bg {
+      transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+      background-size: 150%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      border-radius: 25px;
+
+    }
+
+    .card.card-has-bg:hover {
+      transform: scale(0.98);
+      box-shadow: 0 0 5px -2px rgba(0, 0, 0, 0.3);
+      background-size: 130%;
+      transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+
+    }
+
+    .card.card-has-bg:hover .card-img-overlay {
+      transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+      background: rgb(35, 79, 109);
+      background: linear-gradient(0deg, rgba(4, 69, 114, 0.5) 0%, rgba(4, 69, 114, 1) 100%);
+
+    }
+
+    .card.card-has-bg:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: inherit;
+      -webkit-filter: grayscale(1);
+      -moz-filter: grayscale(10%);
+      -ms-filter: grayscale(10%);
+      -o-filter: grayscale(10%);
+      filter: grayscale(10%);
+    }
+
+    .card .card-footer {
+      background: none;
+      border-top: none;
+
+    }
+
+    .card .card-footer .media img {
+
+      border: solid 3px rgba(234, 95, 0, 0.3);
+
+
+    }
+
+    .card .card-meta {
+      color: rgb(43, 93, 228)
+    }
+
+    .card .card-body {
+      transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+
+    }
+
+    .card :hover {
+
+      cursor: pointer;
+      transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+
+    }
+
+    .card :hover .card-body {
+      margin-top: 30px;
+      transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+      border-radius: 20%
+    }
+
+    .card {
+      border: none;
+      transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+      overflow: hidden;
+      border-radius: 20px;
+      min-height: 450px;
+      box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+      border-radius: 20%
+    }
+
+    .card .card-img-overlay {
+      transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+      background: rgb(8, 0, 0);
+      background: linear-gradient(0deg, rgba(35, 79, 109, 0.3785889355742297) 50%, rgb(209, 159, 159) 150%);
+
+
+    }
+
+    .arc-title {
+      text-decoration: none !important;
+      color: rgb(255, 255, 255) !important;
+
+    }
+
+    .arc-con {
+      position: relative;
+      border-radius: 20%
+    }
+
+    .edit-link {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      color: white;
+    }
+
+    .delete-link {
+      position: absolute;
+      bottom: 30px;
+      right: 60px;
+      color: white;
+    }
+
+    p.groove {
+      border-style: groove;
+    }
+
+    .div-p {
+      background-color: rgb(255, 255, 255);
+      width: 300px;
+      border: 15px solid rgb(255, 255, 255);
+      padding: 50px;
+      margin: 20px;
+
+    }
+
+    div.d {
+      text-align: justify;
+      text-align: right;
+    }
+    .snd-con-p{
+      display: flex;
+      justify-content: space-between;
+      background-color: rgb(154, 221, 55);
+      width: 400px;
+      height: 40px;
+      border-radius: 10px;
+      align-items: center;
+     }
+    .snd-con-p p,
+    .snd-con-p a{
+      color: white;
+      display: block;
+      text-align: center;
+      margin: 0;
+
+    }
+    .snd-con-p a,.snd-con-p a:hover,.snd-con-p a:active{
+      text-decoration: none;
+     height: inherit;
+     background-color: rgb(40, 215, 207);
+      padding: 8px 16px 16px 8px;
+      border-top-right-radius: 10px;
+      color: white;
+      border-bottom-right-radius: 10px;
+    }
+    .form-p{
+      margin: auto; width: 600px; 
+      border: 1px solid #11573a; 
+      padding: 20px; 
+      border-radius: 8px;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} {% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="{% static 'css/foundation.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/header.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/icon-fonts.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/hover.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/footer-bottom.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/menu.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/blog.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/fonts.css'%}" rel="stylesheet" />
+  <link href="{% static 'css/color.css'%}" rel="stylesheet" />
+
+</head>
+
+<body style="margin:0; padding: 0;">
+
+
+
+  {% include 'header.html'%}
+
+  <br>
+</div>
+
+  
+        {% block main %}
+        {% endblock %}
+      
+
+
+
+    <div class="footer">
+      <h2>Footer</h2>
+    </div>
+
+
+
+
+    <!-- //Path to jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+
+    <!-- ////Path to Popper - it is for dropsdowns etc in bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+      integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+      crossorigin="anonymous"></script>
+
+    <!-- //Path to bootsrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+      integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+      crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.bundle.js'%}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/less@4"></script>
+    <script src="{% static 'js/jquery.js'%}"></script>
+    <script src="{% static 'js/foundation.min.js'%}"></script>
+    <script>
+      $(document).foundation();
+    </script>
+    <script src="{% static 'js/modernizr.js'%}"></script>
+</body>
+
+</html>

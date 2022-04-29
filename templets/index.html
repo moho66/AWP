@@ -1,7 +1,109 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block main %}
+<style>
 
-<main class="mt-5">
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial;
+    padding: 10px;
+    background: #f1f1f1;
+  }
+  
+  
+  .header h1 {
+    font-size: 50px;
+  }
+  
+  /* Style the top navigation bar */
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  /* Style the topnav links */
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change color on hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Create two unequal columns that floats next to each other */
+  /* Left column */
+  .leftcolumn {   
+    float: left;
+    width: 75%;
+  }
+  
+  /* Right column */
+  .rightcolumn {
+    float: left;
+    width: 25%;
+    background-color: #f1f1f1;
+    padding-left: 20px;
+  }
+  
+  /* Fake image */
+  .fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Add a card effect for articles */
+  .card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Footer */
+  .footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+  }
+  
+  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {   
+      width: 100%;
+      padding: 0;
+    }
+  }
+  
+  /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+  @media screen and (max-width: 400px) {
+    .topnav a {
+      float: none;
+      width: 100%;
+    }
+  }
+  .card-img{
+    object-fit: none;
+
+  }
+  </style>
 
   <!-- <div class="container">
     <div class="row row-cols-auto row-cols-md-auto g-5 mt-5">
@@ -40,55 +142,74 @@
     </div>
   </div> -->
 
-  <section class="wrapper">
-    <div class="container">
+ 
 
-      <div class="row">
-        {% for art in object_list %}
-        <div class="col-md-3">
-        <div class="arc-con">
-          <a href="{% url 'articale-detail' art.pk %}">
-            <div class="card text-white card-has-bg click-col" style="background-image:url('{{art.img.url}}');">
-              <img class="card-img d-none" src="{{art.img.url}}"
-                alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-              <div class="card-img-overlay d-flex flex-column">
-                <div class="card-body">
-                  <small class="card-meta mb-2">moho</small>
-                  <h4 class="card-title mt-0 "><span class="arc-title">{{art.title }}</span></h4>
-                  <small><i class="far fa-clock"></i> {{art.Date}}</small>
-                  <small><i class="far fa-eye"></i> {{art.views}}</small>
-                </div>
-                <div class="card-footer">
-                  <div class="media">
-                    <img class="mr-3 rounded-circle"
-                      src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/male-512.png"
-                      alt="Generic placeholder image" style="max-width:50px">
-                      <!-- <i class="fa-solid fa-pen-to-square"></i> -->
-                    <div class="media-body">
-                      <h6 class="my-0 text-white d-block">{{art.author}}</h6>
+
+    <div class="card">
+      <section class="wrapper">
+        <div class="container">
+    
+          <div class="row">
+            {% for art in object_list %}
+            <div class="col-md-4">
+            <div class="arc-con" >
+              <a href="{% url 'articale-detail' art.pk %}">
+                <div class="card text-white card-has-bg click-col" style="background-image:url('{{art.img.url}}');">
+                  <!-- <img class="card-img d-none" src="{{art.img.url}} "
+                    alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?"> -->
+                  <div class="card-img-overlay d-flex flex-column">
+                    <div class="card-body">
+                      
+                      <small class="card-meta mb-2">{{ art.category }}</small>
+                      <h4 class="card-title mt-0 "><span class="arc-title">{{art.title }}</span></h4>
+                      <small><i class="far fa-clock"></i> {{art.Date}}</small>
+                      <small><i class="far fa-eye"></i> {{art.views}}</small>
+                    </div>
+                    <div class="card-footer">
+                      <div class="media">
+                        <img class="mr-3 rounded-circle"
+                          src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/male-512.png"
+                          alt="Generic placeholder image" style="max-width:50px">
+                          <!-- <i class="fa-solid fa-pen-to-square"></i> -->
+                        <div class="media-body">
+                          <h6 class="my-0 text-white d-block">{{art.author}}</h6>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </a> 
+              {% if user.is_authenticated and art.author == user %}
+              <a class="delete-link" href="{% url 'delete_Artical' art.pk %}"><i class="fa-solid fa-trash-can"></i></a>
+              {% endif %}
+              {% if user.is_authenticated and art.author == user %}
+              <a class="edit-link" href="{% url 'edit_Artical' art.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
+              
+              {% elif user.is_authenticated and user.is_superuser %}
+              <a class="edit-link" href="{% url 'edit_Artical' art.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
+              {% endif %}
             </div>
-          </a>
-          {% if user.is_authenticated and art.author == user %}
-          <a class="edit-link" href="{% url 'edit_Artical' art.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
-          
-          {% elif user.is_authenticated and user.is_superuser %}
-          <a class="edit-link" href="{% url 'edit_Artical' art.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
-          {% endif %}
+            </div>
+            
+            {% endfor %}
+    
+    
+    
+          </div>
+          <br/>
         </div>
-        </div>
-        {% endfor %}
-
-
-
-      </div>
-
+      </section>
     </div>
-  </section>
+
+    
+    <!-- <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Sep 2, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div> -->
 
 
-</main>
+
 {% endblock %}

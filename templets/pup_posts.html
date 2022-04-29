@@ -1,0 +1,32 @@
+<ul class="pup-posts">
+    {% for art in articlas %}
+    <li class="row">
+        <div class="col-5">
+            <img src="{{art.img.url}}" alt="{{art.title}}" style="width: 100%;">
+        </div>
+        <div class="col-7">
+            <a href="{% url 'articale-detail' art.pk %}">
+                <h5>{{art.title}}</h5>
+
+            </a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+<style>
+    .pup-posts{
+        list-style: none;
+        padding: 0;
+    }
+    .pup-posts a,
+    .pup-posts a:hover,
+    .pup-posts a:active
+    {
+        color: #000;
+        text-decoration: none;
+    }
+    .pup-posts img{
+        width: 100% !important;
+    }
+</style>
+

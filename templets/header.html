@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}">BLOG</a>
+          <a class="navbar-brand" href="{% url 'home' %}"><i class="fa-solid fa-heart-pulse"></i></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -13,9 +13,85 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'add_Artical' %}">Add Artical</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              
+              
+              {% endif %}
               </li>
+              {% if cat_menu %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Category
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                  {% for item in cat_menu %}
+                  <a class="dropdown-item" href="{% url 'category' item %}">
+                  {{ item }} </a>
+                  {% endfor %}
+
+
+                </ul>
+              </li>
+              {% else %}
+              
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'category-list' %}">Categories</a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'my-consults' %}">My Consults</a>
+              </li>
+              {% endif %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  
+                  <li><hr class="dropdown-divider"></li>
+                  {% if user.is_authenticated %}
+                  <li><a class="dropdown-item" href="{% url 'add_category' %}">Add Category</a></li>
+                  {% endif %}
+                </ul>
+              </li>
+              
+              <!-- <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li> -->
+              
+
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" herf="{% url 'login' %}">
+                    
+                  </a>
+                </li>
+              </ul>
+            </ul>
+            
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav ml-auto">
+              {% if user.is_authenticated %}
+              
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ request.user }}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                  <a class="dropdown-item" href="{% url 'logout' %}">
+                  Loguot </a>
+                  
+
+                </ul>
+              </li>
+              
               {% else %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'register' %}">Register</a>
@@ -24,27 +100,8 @@
                 <a class="nav-link" href="{% url 'login' %}">Login</a>
               </li>
               {% endif %}
-              </li>
-              
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something el e here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            
           </div>
         </div>
       </nav>
