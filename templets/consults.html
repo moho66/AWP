@@ -2,38 +2,42 @@
 {% block title %} Consutls{% endblock %}
 {% block main %}
 <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    
-    th, td {
-      text-align: left;
-      padding: 8px;
-      
-    }
-    
-    tr:nth-child(even) {background-color: #ffffff;}
-    </style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+
+  }
+
+  tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+</style>
 
 <div class="card">
-<br/><br/><br/>
-   
-                  <table>       
-                    <th>
-                      <h1>Consults</h1>
-                    </th>       
-                    {% for item in consutls %}
-                  <tr>
-                    <td><h4><a class="dropdown-item" href="{% url 'consult' id=item.id %}">
-                    {{ item.title }} </a></h4></td>
-                    
-                  </tr>
-                  
-                </table>
+  <br /><br /><br />
 
-
-
-     {% endfor %}
-    </div>
-    {% endblock %}
+  <table >
+    <th>
+      <h1>Consults</h1>
+    </th>
+    {% for item in consutls %}
+    <tr>
+      <td>
+        <h4><a class="dropdown-item" href="{% url 'consult' id=item.id %}">
+            {{ item.title }}<br /><small>By: {{ item.name }} || Date: {{item.date}} <br /> Reply status: 
+              {% if not item.reply == "" %} </small>
+            <i class="fa-solid fa-circle-check"></i> {% endif %} {% if item.replyDate %} <small>Date reply:
+              {{item.replyDate}}</small> {% endif %}</a></h4>
+              <hr>
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+</div>
+{% endblock %}

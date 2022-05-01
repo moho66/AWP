@@ -15,3 +15,5 @@ class Consult(models.Model):
     gender=models.CharField(max_length=1)
     age=models.PositiveIntegerField()
     history=models.TextField()
+    date=models.DateField(auto_now_add=True)
+    replyDate=models.DateField(null=True)

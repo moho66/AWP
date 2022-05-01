@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render,redirect,get_object_or_404
 from django.urls import reverse
 from consults.models import *
@@ -41,6 +42,7 @@ def setConsultReply(request,id):
     if request.user.is_authenticated and not request.user.is_anonymous and  request.user.is_superuser:
             cons=get_object_or_404(Consult,pk=id)
             cons.reply=request.POST['text']
+            cons.replyDate=datetime.now().date()
             cons.save()
             return redirect(reverse('consult',kwargs={'id':id}))
     else:
