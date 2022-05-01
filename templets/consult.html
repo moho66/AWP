@@ -11,19 +11,21 @@
                         <h3>
                             {{con.title}}
                         </h3>
-                        <p>by {{con.name}} enail: {{con.user.email}} phone: {{con.phone}}</p>
+                        <p>by {{con.name}}</p>
+                        <p>Email: {{con.user.email}} Phone: {{con.phone}}</p>
+                        <p>Age {{con.age}} Gender: {{con.gender}}</p>
                     </div>
                     <div class="col-12">
                         
                         <!-- <img src="{% if con.img %}{{con.img.url}}{% else %}{% static 'img/logo.png' %}{% endif %}" alt="{{con.title}}" > -->
                         {% if con.img %}
-                        <a href="{{con.img.url}}" target="_blank" download style="text-decoration: none;">download the image</a>
+                        <a href="{{con.img.url}}" target="_blank" download style="text-decoration: none;">download the file</a>
                         {% endif %}
                     </div>
-                    <div class="col-12"><h3>text</h3> {{con.text}}</div>
-                    <div class="col-12"><h3>medical history</h3> {{con.history}}</div>
+                    <div class="col-12"><h3>Subject</h3> {{con.text}}</div>
+                    <div class="col-12"><h3>Medical History</h3> {{con.history}}</div>
                     <div class="col-12">
-                        <h4>Reaply: </h4>
+                        <h4>Reply: </h4>
                         {% if request.user.is_superuser %}
                         <form method="POST" action="{% url 'set-reply-consults' con.id %}">
                             {% csrf_token %}

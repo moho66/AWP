@@ -7,17 +7,17 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
-                <label>name</label>
+                <label>Name</label>
                 <input required type="text" name="name" class="form-control" aria-describedby="emailHelp" placeholder="Enter name">
             </div>
             
             <div class="form-group">
-                <label>phone</label>
+                <label>Phone</label>
                 <input required type="phone" name="phone" class="form-control" aria-describedby="emailHelp" placeholder="Enter phone">
             </div>
             
             <div class="form-group">
-                <label>age</label>
+                <label>Age</label>
                 <input required type="number" name="age" min="1" class="form-control" aria-describedby="emailHelp">
             </div>
             
@@ -31,19 +31,19 @@
             </div>
             
             <div class="form-group">
-                <label>title</label>
+                <label>Subject</label>
                 <input required type="text" name="title" class="form-control" aria-describedby="emailHelp" placeholder="Enter title">
             </div>
             <div class="form-group">
-                <label>text</label>
+                <label>Explanation of the case</label>
                 <textarea required class="form-control" name="text" placeholder="what ....?" rows="3"></textarea>
             </div>
             <div class="form-group">
-                <label>medical history</label>
+                <label>Medical History</label>
                 <textarea required class="form-control" name="histroy" placeholder="what ....?" rows="3"></textarea>
             </div>
 
-            <label>image</label>
+            <label>File</label>
             <input type="file" class="form-control-file" name="img" accept="image">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

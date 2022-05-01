@@ -213,7 +213,7 @@
 </head>
 
 <body style="margin:0; padding: 0;">
-
+  
 
 
   {% include 'header.html'%}
@@ -227,7 +227,7 @@
           
           <div class="snd-con-p ">
             <p>
-              You can now send your medical advice to us..
+               You can now send your medical consult to us..
             </p>
             <a href="{% url 'send-consult' %}">send</a>
         </div>
@@ -258,7 +258,7 @@
 
       <div class="rightcolumn col-3">
         <div class="card">
-          <h2>About Me</h2>
+          <h2>Videos</h2>
           <iframe width="270" height="250" src="https://www.youtube.com/embed/TW1XE-fBycE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
         </div>
         <div class="card">
@@ -271,7 +271,10 @@
         </div>
         <div class="card">
           <h3>Follow Me</h3>
-          <p>Some text..</p>
+          
+          <a href="https://www.youtube.com/c/AltibbiOfficial/featured"><small>YouTube</small></a>
+          <a href="https://www.facebook.com/Altibbi/"><small>Facebook</small></a>
+          <div class="fb-like" data-href="https://developers.faceboohttps://www.facebook.com/Altibbi/k.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
         </div>
       </div>
     </div>
@@ -279,7 +282,7 @@
 
 
     <div class="footer">
-      <h2>Footer</h2>
+      <p>SVU <small>AWP_HW</small></p>
     </div>
 
 
@@ -308,6 +311,8 @@
       $(document).foundation();
     </script>
     <script src="{% static 'js/modernizr.js'%}"></script>
+    <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0" nonce="4t7f6vJI"></script>
 </body>
 
 </html>
