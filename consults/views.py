@@ -24,7 +24,7 @@ def sendDconsult(request):
             consult.save()
         return render(request,'send_consult.html')
     else:
-        return redirect('home')
+        return redirect('login')
 
 def myConsults(request):
     if request.user.is_authenticated and not request.user.is_anonymous:

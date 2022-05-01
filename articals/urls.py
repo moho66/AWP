@@ -2,7 +2,7 @@ from django.urls import path
 
 from articals.models import Category
 from . import views
-from .views import HomeView, ArticaleDetail, AddArtical, UpdateArtical, Addcategory, home_view ,CategoryView, DeletArtical, LikeView, CategoryListView
+from .views import HomeView, ArticaleDetail, AddArtical, UpdateArtical, Addcategory, home_view ,CategoryView, DeletArtical, LikeView, CategoryListView, About
 urlpatterns = [
     # path('', views.index, name='index'),
     path('',HomeView.as_view(), name="home"),
@@ -13,6 +13,7 @@ urlpatterns = [
     path('articale/edit/<int:pk>', UpdateArtical.as_view(), name='edit_Artical'),
     path('articale/<int:pk>/delete', DeletArtical.as_view(), name='delete_Artical'),
     path('test/', home_view, name='test'),
+    path('about/', About, name='about'),
     path('category/<str:cats>/', CategoryView, name='category'),
     path('category-list/', CategoryListView, name='category-list'),
     path('like/<int:pk>', LikeView, name='like_post'),

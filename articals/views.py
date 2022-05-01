@@ -96,7 +96,9 @@ def CategoryView(request, cats):
     category_posts = Artical.objects.filter(category=cats)
     return render(request, 'categories.html', {'cats':cats.title(), 'category_posts':category_posts})
     
-    
+def About(request):
+    return render(request, "About.html")
+
 
 
 def home_view(request):
